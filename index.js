@@ -55,7 +55,11 @@ async function run() {
     const companyCollection = client.db("workFindersDB").collection("itCompany");
 
 
-    
+      // experience jobs get api 
+      app.get('/experience-jobs', async(req, res) => {
+        const result = await experienceJobsCollection.find().toArray();
+        res.send(result);
+      })
 
       // fresher jobs get api 
       app.get('/fresher-jobs', async(req, res) => {
