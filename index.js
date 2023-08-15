@@ -50,7 +50,14 @@ async function run() {
     // await client.connect();
 
 
-    const jobsCollection = client.db("musicFairyDB").collection("jobs");
+    const jobsCollection = client.db("workFindersDB").collection("jobs");
+
+
+      // all jobs get api 
+      app.get('/all-jobs', async(req, res) => {
+        const result = await jobsCollection.find().toArray();
+        res.send(result);
+      })
 
 
     // Send a ping to confirm a successful connection
