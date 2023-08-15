@@ -50,12 +50,18 @@ async function run() {
     // await client.connect();
 
 
-    const jobsCollection = client.db("workFindersDB").collection("jobs");
+    const experienceJobsCollection = client.db("workFindersDB").collection("experienceJobs");
+    const fresherJobCollection = client.db("workFindersDB").collection("fresherJob");
+    const companyCollection = client.db("workFindersDB").collection("itCompany");
 
 
-      // all jobs get api 
-      app.get('/all-jobs', async(req, res) => {
-        const result = await jobsCollection.find().toArray();
+     
+      
+      
+
+      // it-company get api 
+      app.get('/it-company', async(req, res) => {
+        const result = await companyCollection.find().toArray();
         res.send(result);
       })
 
