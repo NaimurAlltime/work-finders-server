@@ -10,27 +10,6 @@ app.use(cors())
 app.use(express.json())
 
 
-// jwt function 
-const verifyJWT = (req, res, next) => {
-  // console.log('hitting verify jwt');
-  // console.log(req.headers.authorization);
-  const authorization = req.headers.authorization;
-  if(!authorization){
-     return res.status(401).send({error: true, message: 'unauthorized access'})
-  }
-  const token = authorization.split(' ')[1];
-  // console.log('token inside verify jwt', token);
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (error, decoded) => {
-    if(error){
-      return res.status(401).send({error: true, message: 'unauthorized access'})
-    }
-    req.decoded = decoded;
-    next();
-  })
-}
-
-
-
 
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ynccjdb.mongodb.net/?retryWrites=true&w=majority`;
